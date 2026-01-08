@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 20px;
+}
+
+.environment-badge {
+  background-color: #61dafb;
+  color: #282c34;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.form-container, .items-container {
+  background-color: #3a3f47;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  min-width: 400px;
+}
+
+.form-container input {
+  margin: 10px;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+}
+
+.form-container button {
+  background-color: #61dafb;
+  color: #282c34;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.form-container button:hover {
+  background-color: #4fa8c5;
+}
+
+.items-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.items-container li {
+  background-color: #282c34;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: left;
+}
