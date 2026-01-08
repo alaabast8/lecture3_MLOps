@@ -31,7 +31,7 @@ def read_root():
 @app.get("/api/items")
 def get_items():
     print("hello alaa and reem")
-    
+    print("hiiii")
     print("hello alaa and reem")
     return {"items": items_db}
 
