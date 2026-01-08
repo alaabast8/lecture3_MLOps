@@ -28,9 +28,15 @@ jobs:
       env:
         CI: true 
 
+    - name: Install E2E Dependencies
+      run: pip install python-dotenv selenium
+      working-directory: ./frontend
+      
     - name: Run e2e Test
       run: python e2e_test.py
       working-directory: ./frontend
+      env:
+        FRONTEND_URL: http://localhost:3000
         
   backend-test:
     runs-on: ubuntu-latest

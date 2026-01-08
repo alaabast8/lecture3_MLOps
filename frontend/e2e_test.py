@@ -1,23 +1,28 @@
 import time
 import os
-from dotenv import load_dotenv # Import dotenv
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options # Import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 load_dotenv()
 
 def run_e2e_test():
-    options = webdriver.ChromeOptions()
+    # --- FIX: Configure Chrome for Headless CI Environment ---
+    options = Options()
+    options.add_argument("--headless")  # Run without UI
+    options.add_argument("--no-sandbox") # Required for Linux/CI
+    options.add_argument("--disable-dev-shm-usage") # Overcome resource limits
+    
     driver = webdriver.Chrome(options=options)
 
+    # Fallback to localhost if env var is missing
     base_url = os.getenv("FRONTEND_URL")
 
     try:
         print(f"Starting E2E Test on {base_url}...")
-
         driver.get(base_url) 
 
         wait = WebDriverWait(driver, 10)
@@ -48,6 +53,8 @@ def run_e2e_test():
 
     except Exception as e:
         print(f"[FAIL] Test Failed: {e}")
+        # IMPORTANT: Fail the action if test fails
+        exit(1) 
     finally:
         driver.quit()
 
