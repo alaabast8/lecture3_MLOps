@@ -24,7 +24,7 @@ jobs:
 
     - name: Run Frontend Lint
       working-directory: ./frontend
-      run: npm run lint --if-present
+      run: npm run lint 
 
     - name: Run Frontend Test
       run: npm test
@@ -39,7 +39,6 @@ jobs:
     - name: Start App and Run E2E
       working-directory: ./frontend
       env:
-        # Use 127.0.0.1 to avoid "localhost" IPv6 lookup issues
         FRONTEND_URL: http://127.0.0.1:3000
         BROWSER: none
       run: |
