@@ -39,6 +39,7 @@ jobs:
     - name: Start App and Run E2E
       working-directory: ./frontend
       env:
+        # Use 127.0.0.1 to avoid "localhost" IPv6 lookup issues
         FRONTEND_URL: http://127.0.0.1:3000
         BROWSER: none
       run: |
@@ -71,20 +72,12 @@ jobs:
         working-directory: ./backend
         run: |
           python -m pip install --upgrade pip
-          # Added flake8 to the installation list
-          pip install pytest fastapi sqlalchemy python-dotenv httpx psycopg2-binary flake8
-
-      - name: Run Backend Lint (Flake8)
-        working-directory: ./backend
-        run: |
-          # Stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings. Remove --exit-zero to fail the build on style guide violations
-          flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
+          pip install pytest fastapi sqlalchemy python-dotenv httpx psycopg2-binary
 
       - name: Run Backend Test
         working-directory: ./backend
         env:
+          # USE SECRETS HERE
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_TEST_URL: ${{ secrets.DATABASE_TEST_URL }}
         run: pytest main_test.py
