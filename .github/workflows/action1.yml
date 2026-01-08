@@ -35,17 +35,23 @@ jobs:
     - name: Start App and Run E2E
       working-directory: ./frontend
       env:
-        FRONTEND_URL: http://localhost:3000
+        # Use 127.0.0.1 to avoid "localhost" IPv6 lookup issues
+        FRONTEND_URL: http://127.0.0.1:3000
         BROWSER: none
       run: |
-        # 1. Start React in the background
         npm start &
-        
-        # 2. Wait for the server to be ready (downloads a small utility to check port 3000)
-        npx wait-on http://localhost:3000
-        
-        # 3. Run the Python test
+        PID=$!
+        npx wait-on@7 http://127.0.0.1:3000
+        echo "Running E2E Test..."
+        set +e
         python e2e_test.py
+        TEST_EXIT_CODE=$?
+        set -e
+        
+        echo "Stopping React Server (PID: $PID)..."
+        kill $PID
+        
+        exit $TEST_EXIT_CODE
         
   backend-test:
     runs-on: ubuntu-latest
