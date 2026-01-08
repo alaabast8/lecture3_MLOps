@@ -19,11 +19,11 @@ jobs:
           node-version: '18'
 
       - name: Run Frontend Test
-        run: node main_test.js
+        run: node src/App.test.js
         working-directory: ./frontend
         
       - name: Run e2e Test
-        run: node e2e_test.js
+        run: python e2e_test.py
         working-directory: ./frontend
         
   backend-test:
