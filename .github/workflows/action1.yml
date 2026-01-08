@@ -32,11 +32,20 @@ jobs:
       run: pip install python-dotenv selenium
       working-directory: ./frontend
       
-    - name: Run e2e Test
-      run: python e2e_test.py
+    - name: Start App and Run E2E
       working-directory: ./frontend
       env:
         FRONTEND_URL: http://localhost:3000
+        BROWSER: none
+      run: |
+        # 1. Start React in the background
+        npm start &
+        
+        # 2. Wait for the server to be ready (downloads a small utility to check port 3000)
+        npx wait-on http://localhost:3000
+        
+        # 3. Run the Python test
+        python e2e_test.py
         
   backend-test:
     runs-on: ubuntu-latest
