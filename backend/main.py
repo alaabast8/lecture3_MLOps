@@ -30,6 +30,7 @@ def read_root():
 
 @app.get("/api/items")
 def get_items():
+    print("hello alaa and reem")
     return {"items": items_db}
 
 @app.post("/api/items")
