@@ -10,21 +10,27 @@ jobs:
   frontend-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
 
-      - name: Run Frontend Test
-        run: node src/App.test.js
-        working-directory: ./frontend
-        
-      - name: Run e2e Test
-        run: python e2e_test.py
-        working-directory: ./frontend
+    - name: Install Dependencies
+      run: npm install
+      working-directory: ./frontend
+
+    - name: Run Frontend Test
+      run: npm test
+      working-directory: ./frontend
+      env:
+        CI: true 
+
+    - name: Run e2e Test
+      run: python e2e_test.py
+      working-directory: ./frontend
         
   backend-test:
     runs-on: ubuntu-latest
