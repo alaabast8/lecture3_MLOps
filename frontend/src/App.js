@@ -2,32 +2,24 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
-  const [environment, setEnvironment] = useState('');
   const [items, setItems] = useState([]);
   const [itemName, setItemName] = useState('');
   const [itemDescription, setItemDescription] = useState('');
 
   useEffect(() => {
-    fetchEnvironment();
     fetchItems();
   }, []);
 
-  const fetchEnvironment = async () => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/`);
-      setEnvironment(response.data.environment);
-    } catch (error) {
-      console.error('Error fetching environment:', error);
-    }
-  };
+ 
 
   const fetchItems = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/api/items`);
-      setItems(response.data.items);
+      // Change this line:
+      setItems(response.data); 
     } catch (error) {
       console.error('Error fetching items:', error);
     }
@@ -52,9 +44,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>My Fullstack App</h1>
-        <div className="environment-badge" data-testid="environment-badge">
-          Environment: <strong>{environment.toUpperCase()}</strong>
-        </div>
+      
         
         <div className="form-container">
           <h2>Add New Item</h2>
@@ -92,3 +82,4 @@ function App() {
     </div>
   );
 }
+export default App;
