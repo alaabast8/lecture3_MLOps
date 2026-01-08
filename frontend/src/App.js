@@ -23,18 +23,27 @@ function App() {
     } catch (error) {
       console.error('Error fetching items:', error);
     }
-  };
+                     };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post(`${API_BASE_URL}/api/items`, {
         name: itemName,
-        description: itemDescription
+
+
+
+         
+
+
+
+
+                           description: itemDescription
       });
       setItemName('');
       setItemDescription('');
-      fetchItems();
+                                                          
+                                  fetchItems();
     } catch (error) {
       console.error('Error creating item:', error);
     }
