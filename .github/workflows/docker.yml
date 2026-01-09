@@ -69,7 +69,7 @@ jobs:
       #     path: .env
       #     retention-days: 5
 
-      # Step 8: Print success message with image details
+      
       - name: Image digest and tags
         run: |
           echo "✅ Docker image successfully built and pushed!"
