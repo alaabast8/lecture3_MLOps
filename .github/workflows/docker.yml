@@ -44,7 +44,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=reemfad/mlops-devops:buildcache
           cache-to: type=registry,ref=reemfad/mlops-devops:buildcache,mode=max
-
+       #updat the print 
       - name: Image digest and tags
         run: |
           echo "✅ Docker image successfully built and pushed!"
