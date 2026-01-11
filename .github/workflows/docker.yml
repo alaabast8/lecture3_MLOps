@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: reemfad/lecture3_MLOps  # Changed to match your repo name
+          images: reemfad/lecture3_MLOps  
           tags: |
             type=ref,event=branch
             type=sha,prefix={{branch}}-
@@ -49,5 +49,5 @@ jobs:
         run: |
           echo "✅ Docker image successfully built and pushed!"
           echo "📦 Image: reemfad/mlops-devops"
-          echo "🏷️  Tags: ${{ steps.meta.outputs.tags }}"
+          
           echo "🔗 View on Docker Hub: https://hub.docker.com/r/reemfad/mlops-devops"
