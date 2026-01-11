@@ -1,5 +1,5 @@
 # Stage 1: Build React Frontend
-FROM node:18-alpine 
+FROM node:18-alpine AS frontend-build  
 
 WORKDIR /app/frontend
 
@@ -7,7 +7,7 @@ WORKDIR /app/frontend
 COPY frontend/package*.json ./
 
 # Install dependencies
-RUN npm i 
+RUN npm ci 
 
 # Copy frontend source
 COPY frontend/ ./
@@ -50,7 +50,7 @@ COPY --from=backend-setup /app/backend /app/backend
 # Copy built frontend from frontend-build stage
 COPY --from=frontend-build /app/frontend/build /app/frontend/build
 
-# Copy nginx configuration
+
 
 
 # Create startup script
