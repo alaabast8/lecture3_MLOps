@@ -24,12 +24,7 @@ Base = declarative_base()
 # 3. Define the Database Table (Model)
 class ItemModel(Base):
     __tablename__ = "items"
-<<<<<<< HEAD
-    print ("hellos")
-=======
-    print ("reem")
-    
->>>>>>> 7ec9373b0b72914a070851beff3e3f4e2af649aa
+
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)

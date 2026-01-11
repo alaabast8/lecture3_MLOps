@@ -51,7 +51,7 @@ COPY --from=backend-setup /app/backend /app/backend
 COPY --from=frontend-build /app/frontend/build /app/frontend/build
 
 # Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+
 
 # Create startup script
 RUN echo '#!/bin/bash\n\
